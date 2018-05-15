@@ -10,11 +10,11 @@ import cv2
 
 # construct argument parser and parse arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True, help="path to image")
+#ap.add_argument("-i", "--image", required=True, help="path to image")
 args = vars(ap.parse_args())
 
-image = cv2.imread(args["image"])
-
+#image = cv2.imread(args["image"])
+image = cv2.imread('Images\\input\\i.5.jpg')
 # resize image while retaining aspect ratio
 d = 1024 / image.shape[1]
 dim = (1024, int(image.shape[0] * d))
@@ -189,10 +189,10 @@ if materials[i] == "Euro2":
     diameter = [x / biggest * 25.75 for x in diameter]
     scaledTo = "Scaled to 2 Euro"
 elif materials[i] == "Brass":
-    diameter = [x / biggest * 24.25 for x in diameter]
+    diameter = [x / biggest * 22.25 for x in diameter]
     scaledTo = "Scaled to 50 Cent"
 elif materials[i] == "Euro1":
-    diameter = [x / biggest * 23.25 for x in diameter]
+    diameter = [x / biggest * 22.25 for x in diameter]
     scaledTo = "Scaled to 1 Euro"
 elif materials[i] == "Copper":
     diameter = [x / biggest * 21.25 for x in diameter]
@@ -210,28 +210,19 @@ while i < len(diameter):
 
     #todo: change diameters
     # compare to known diameters with some margin for error
-    if math.isclose(d, 25.75, abs_tol=1.25) and m == "Euro2":
-        t = "2 Euro"
-        total += 200
-    elif math.isclose(d, 23.25, abs_tol=2.5) and m == "Euro1":
-        t = "1 Euro"
-        total += 100
-    elif math.isclose(d, 19.75, abs_tol=1.25) and m == "Brass":
+    if math.isclose(d, 17.25, abs_tol=1.25) and m == "Brass":
         t = "10 Cent"
         total += 10
-    elif math.isclose(d, 22.25, abs_tol=1.0) and m == "Brass":
-        t = "20 Cent"
-        total += 20
-    elif math.isclose(d, 24.25, abs_tol=2.5) and m == "Brass":
+    elif math.isclose(d, 19.45, abs_tol=2.5) and m == "Brass":
         t = "50 Cent"
         total += 50
-    elif math.isclose(d, 16.25, abs_tol=1.25) and m == "Copper":
+    elif math.isclose(d, 17.45, abs_tol=1.25) and m == "Copper":
         t = "1 Cent"
         total += 1
-    elif math.isclose(d, 18.75, abs_tol=1.25) and m == "Copper":
+    elif math.isclose(d, 19.25, abs_tol=1.25) and m == "Copper":
         t = "2 Cent"
         total += 2
-    elif math.isclose(d, 21.25, abs_tol=2.5) and m == "Copper":
+    elif math.isclose(d, 21.95, abs_tol=2.5) and m == "Copper":
         t = "5 Cent"
         total += 5
 
@@ -259,5 +250,6 @@ cv2.putText(output, "Classifier mean accuracy: {}%".format(score),
             1.0, (0, 0, 255), lineType=cv2.LINE_AA)
 
 # show output and wait for key to terminate program
-cv2.imshow("Output", np.hstack([image, output]))
+#cv2.imshow("Output", np.hstack([image, output]))
+cv2.imshow('out',output)
 cv2.waitKey(0)
