@@ -185,18 +185,12 @@ i = diameter.index(biggest)
 
 # scale everything according to maximum diameter
 # todo: change diameters
-if materials[i] == "Euro2":
-    diameter = [x / biggest * 25.75 for x in diameter]
-    scaledTo = "Scaled to 2 Euro"
-elif materials[i] == "Brass":
-    diameter = [x / biggest * 22.25 for x in diameter]
-    scaledTo = "Scaled to 50 Cent"
-elif materials[i] == "Euro1":
-    diameter = [x / biggest * 22.25 for x in diameter]
-    scaledTo = "Scaled to 1 Euro"
+if materials[i] == "Silver":
+    diameter = [x / biggest * 19.45 for x in diameter]
+    scaledTo = "Scaled to 50 denars"
 elif materials[i] == "Copper":
-    diameter = [x / biggest * 21.25 for x in diameter]
-    scaledTo = "Scaled to 5 Cent"
+    diameter = [x / biggest * 21.95 for x in diameter]
+    scaledTo = "Scaled to 5 denars"
 else:
     scaledTo = "unable to scale.."
 
@@ -208,22 +202,24 @@ while i < len(diameter):
     (x, y) = coordinates[i]
     t = "Unknown"
 
+
     #todo: change diameters
     # compare to known diameters with some margin for error
-    if math.isclose(d, 17.25, abs_tol=1.25) and m == "Brass":
-        t = "10 Cent"
+    if math.isclose(d, 19.25, abs_tol=0.75) and m == "Silver":
+        t = "10 den"
         total += 10
-    elif math.isclose(d, 19.45, abs_tol=2.5) and m == "Brass":
-        t = "50 Cent"
+    elif math.isclose(d, 21.45, abs_tol=1.45) and m == "Silver":
+        t = "50 den"
         total += 50
-    elif math.isclose(d, 17.45, abs_tol=1.25) and m == "Copper":
-        t = "1 Cent"
+    elif math.isclose(d, 17.95, abs_tol=1.25) and m == "Copper":
+        t = "1 den"
         total += 1
     elif math.isclose(d, 19.25, abs_tol=1.25) and m == "Copper":
-        t = "2 Cent"
+        t = "2 den"
         total += 2
+
     elif math.isclose(d, 21.95, abs_tol=2.5) and m == "Copper":
-        t = "5 Cent"
+        t = "5 den"
         total += 5
 
     # write result on output image
@@ -242,7 +238,7 @@ output = cv2.resize(output, dim, interpolation=cv2.INTER_AREA)
 cv2.putText(output, scaledTo,
             (5, output.shape[0] - 40), cv2.FONT_HERSHEY_PLAIN,
             1.0, (0, 0, 255), lineType=cv2.LINE_AA)
-cv2.putText(output, "Coins detected: {}, EUR {:2}".format(count, total / 100),
+cv2.putText(output, "Coins detected: {}, MKD {:2}".format(count, total),
             (5, output.shape[0] - 24), cv2.FONT_HERSHEY_PLAIN,
             1.0, (0, 0, 255), lineType=cv2.LINE_AA)
 cv2.putText(output, "Classifier mean accuracy: {}%".format(score),
