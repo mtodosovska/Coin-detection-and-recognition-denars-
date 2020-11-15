@@ -5,3 +5,9 @@ we have collected a dataset of images of MKD coins, and trained a classifier (ML
 The end product of this program is the sum of coins on the image, and the recognised coins marked on the image.
 
 ![alt text](marked_coins.jpg)
+
+Classifier train mean accuracy:  100.0
+Classifier test mean accuracy:  100.0
+
+======= Summary: =======
+Coins detected: 18, MKD 205
