@@ -116,8 +116,8 @@ known_diameters = {
     '10 den': [19.25, 0.75, 'Silver', 10],
     '50 den': [21.45, 1.45, 'Silver', 50],
     '1 den': [17.95, 1.25, 'Copper', 1],
-    '2 den': [19.25, 1.25, 'Copper', 2],
-    '5 den': [21.95, 2.5, 'Copper', 5]
+    '2 den': [20.45, 1.25, 'Copper', 2],
+    '5 den': [22.95, 2.5, 'Copper', 5]
 }
 while i < len(diameter):
     d = diameter[i]
